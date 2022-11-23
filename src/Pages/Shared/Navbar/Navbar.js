@@ -46,7 +46,10 @@ const Navbar = () => {
               {menuItem}
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost normal-case text-xl">
+          <Link
+            to="/"
+            className="btn btn-ghost normal-case text-3xl font-serif font-semibold"
+          >
             Recycle Clothes
           </Link>
         </div>

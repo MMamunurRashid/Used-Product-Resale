@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import CategoriesCard from "./HomeCategoriesCard";
+import axios from "axios";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("categories.json")
-      .then((res) => res.json())
-      .then((data) => setCategories(data));
+    // fetch("http://localhost:5000/categories")
+    //   .then((res) => res.json())
+    //   .then((data) => setCategories(data));
+    // data fetch using axios
+    axios
+      .get("http://localhost:5000/categories")
+      .then((data) => setCategories(data.data));
   }, []);
   return (
     <div className="my-10">

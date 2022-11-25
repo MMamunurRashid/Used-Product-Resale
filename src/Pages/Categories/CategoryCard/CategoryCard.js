@@ -3,7 +3,7 @@ import { format } from "date-fns/esm";
 import verified from "../../../assets/6364343.png";
 import unverified from "../../../assets/png-transparent-blue-check-mark-area-circle-symbol-thumbnail.png";
 import { useQuery } from "@tanstack/react-query";
-import BookingModal from "../BookingModal/BookingModal";
+import toast from "react-hot-toast";
 
 const CategoryCard = ({ product, setProduct }) => {
   const postDate = format(new Date(product.postDate), "ppP");
@@ -16,7 +16,6 @@ const CategoryCard = ({ product, setProduct }) => {
     condition,
     duration,
     meetingLocation,
-    phone,
     name,
     email,
   } = product;
@@ -31,6 +30,20 @@ const CategoryCard = ({ product, setProduct }) => {
       return data;
     },
   });
+
+  const handleReport = (id) => {
+    // console.log("click", id);
+    fetch(`http://localhost:5000/report-product/${id}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        //console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success("Product Reported");
+        }
+      });
+  };
 
   return (
     <div>
@@ -49,9 +62,9 @@ const CategoryCard = ({ product, setProduct }) => {
           <p>Meeting Location: {meetingLocation}</p>
         </div>
         <h1 className="text-2xl text-center">Seller Information </h1>
-        <div className="flex justify-between mx-3">
+        <div className="flex justify-evenly mx-3">
           <div className="avatar">
-            <div className="w-14 h-14 rounded-full">
+            <div className="w-7 h-7 rounded-full">
               {
                 <img
                   src={sellers?.verify === "verified" ? verified : unverified}
@@ -62,19 +75,27 @@ const CategoryCard = ({ product, setProduct }) => {
           </div>
           <div className="">
             <h1>{name}</h1>
-            {/* <p>{email}</p> */}
-            {/* <p>{phone}</p> */}
           </div>
           <p>{postDate}</p>
         </div>
-        <div className="card-actions justify-end">
-          <label
-            onClick={() => setProduct(product)}
-            htmlFor="booking-modal"
-            className="btn btn-primary"
-          >
-            Book Now
-          </label>
+        <div className="flex justify-between m-3">
+          <div>
+            <button
+              onClick={() => handleReport(product._id)}
+              className="btn btn-primary"
+            >
+              Report To Admin
+            </button>
+          </div>
+          <div className=" ">
+            <label
+              onClick={() => setProduct(product)}
+              htmlFor="booking-modal"
+              className="btn btn-primary"
+            >
+              Book Now
+            </label>
+          </div>
         </div>
       </div>
     </div>

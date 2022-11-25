@@ -35,7 +35,7 @@ const Register = () => {
         };
         updateUser(userInfo)
           .then(() => {
-            saveUserInDb(email, data.name, option);
+            saveUserInDb(data.name, email, option);
           })
           .catch((err) => console.error(err));
       })
@@ -53,7 +53,7 @@ const Register = () => {
         const user = result.user;
         console.log(user);
         const option = "Buyer";
-        saveUserInDb(user.email, user.displayName, option);
+        saveUserInDb(user.displayName, user.email, option);
         toast.success("Your Registration Successful!!");
       })
       .catch((err) => {
@@ -64,7 +64,8 @@ const Register = () => {
   };
 
   const saveUserInDb = (name, email, option) => {
-    const user = { name, email, option };
+    const verify = "unverified";
+    const user = { name, email, option, verify };
     fetch(`http://localhost:5000/users`, {
       method: "PUT",
       headers: {

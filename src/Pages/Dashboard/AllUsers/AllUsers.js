@@ -45,7 +45,7 @@ const AllUsers = () => {
               <th>{idx + 1}</th>
               <td>{user.name}</td>
               <td>{user.email}</td>
-              <td>{user?.role ? "Admin" : user.option}</td>
+              <td>{user?.role ? user.role : user.option}</td>
               <td>
                 {user?.role !== "admin" && (
                   <button

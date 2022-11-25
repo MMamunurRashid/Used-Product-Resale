@@ -15,8 +15,22 @@ const AllSeller = () => {
 
   const handleDelete = (id) => {
     // console.log("click", id);
-    fetch(`http://localhost:5000/buyer/${id}`, {
-      method: "DELETE",
+    fetch(`http://localhost:5000/users/admin/${id}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        //console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success("Seller Verification Successful");
+          refetch();
+        }
+      });
+  };
+  const handleVerify = (id) => {
+    // console.log("click", id);
+    fetch(`http://localhost:5000/users/seller/${id}`, {
+      method: "PUT",
     })
       .then((res) => res.json())
       .then((data) => {
@@ -37,6 +51,7 @@ const AllSeller = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Delete</th>
+              <th>Verify</th>
             </tr>
           </thead>
           <tbody>
@@ -52,6 +67,18 @@ const AllSeller = () => {
                   >
                     Delete
                   </button>
+                </td>
+                <td>
+                  {seller?.verify !== "verified" ? (
+                    <button
+                      onClick={() => handleVerify(seller._id)}
+                      className="btn btn-sm"
+                    >
+                      Verify
+                    </button>
+                  ) : (
+                    seller.verify
+                  )}
                 </td>
               </tr>
             ))}

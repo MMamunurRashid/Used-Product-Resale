@@ -15,14 +15,14 @@ const AllSeller = () => {
 
   const handleDelete = (id) => {
     // console.log("click", id);
-    fetch(`http://localhost:5000/users/admin/${id}`, {
-      method: "PUT",
+    fetch(`http://localhost:5000/seller/${id}`, {
+      method: "DELETE",
     })
       .then((res) => res.json())
       .then((data) => {
         //console.log(data);
         if (data.modifiedCount > 0) {
-          toast.success("Seller Verification Successful");
+          toast.success("Seller deleted successfully");
           refetch();
         }
       });
@@ -36,7 +36,7 @@ const AllSeller = () => {
       .then((data) => {
         if (data.deletedCount > 0) {
           refetch();
-          toast.success(`Buyer deleted successfully`);
+          toast.success(` Seller Verification Successful`);
         }
       });
   };

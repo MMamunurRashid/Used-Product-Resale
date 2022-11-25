@@ -8,10 +8,12 @@ import AllSeller from "../../Pages/Dashboard/AllSeller/AllSeller";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import MyOrder from "../../Pages/Dashboard/MyOrder/MyOrder";
 import MyProduct from "../../Pages/Dashboard/MyProduct/MyProduct";
-import MyWishlist from "../../Pages/Dashboard/MyWishlist/MyWishlist";
+
+import ReportedProduct from "../../Pages/Dashboard/ReportedProduct/ReportedProduct";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/LoginAndRegister/Login/Login";
 import Register from "../../Pages/LoginAndRegister/Register/Register";
+import NotFound from "../../Pages/NotFound/NotFound";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -78,8 +80,12 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/my-wishlist",
-        element: <MyWishlist></MyWishlist>,
+        path: "/dashboard/reported-product",
+        element: (
+          <AdminRoute>
+            <ReportedProduct></ReportedProduct>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/my-product",
@@ -94,6 +100,10 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound></NotFound>,
   },
 ]);
 export default router;

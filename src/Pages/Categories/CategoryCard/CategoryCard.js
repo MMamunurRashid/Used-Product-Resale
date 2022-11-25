@@ -3,8 +3,9 @@ import { format } from "date-fns/esm";
 import verified from "../../../assets/6364343.png";
 import unverified from "../../../assets/png-transparent-blue-check-mark-area-circle-symbol-thumbnail.png";
 import { useQuery } from "@tanstack/react-query";
+import BookingModal from "../BookingModal/BookingModal";
 
-const CategoryCard = ({ product }) => {
+const CategoryCard = ({ product, setProduct }) => {
   const postDate = format(new Date(product.postDate), "ppP");
   const {
     categories_id,
@@ -20,13 +21,13 @@ const CategoryCard = ({ product }) => {
     email,
   } = product;
 
-  const url = `http://localhost:5000/seller?email=${email}`;
+  const url = `http://localhost:5000/sellerquery?email=${email}`;
   const { data: sellers = [] } = useQuery({
     queryKey: ["sellers", email],
     queryFn: async () => {
       const res = await fetch(url, {});
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });
@@ -50,17 +51,30 @@ const CategoryCard = ({ product }) => {
         <h1 className="text-2xl text-center">Seller Information </h1>
         <div className="flex justify-between mx-3">
           <div className="avatar">
-            <div className="w-14 h-14 rounded-full">{/*  */}</div>
+            <div className="w-14 h-14 rounded-full">
+              {
+                <img
+                  src={sellers?.verify === "verified" ? verified : unverified}
+                  alt=""
+                />
+              }
+            </div>
           </div>
           <div className="">
             <h1>{name}</h1>
-            <p>{email}</p>
+            {/* <p>{email}</p> */}
             <p>{phone}</p>
           </div>
           <p>{postDate}</p>
         </div>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Book Now</button>
+          <label
+            onClick={() => setProduct(product)}
+            htmlFor="booking-modal"
+            className="btn btn-primary"
+          >
+            Book Now
+          </label>
         </div>
       </div>
     </div>

@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import BookingModal from "../BookingModal/BookingModal";
 import CategoryCard from "../CategoryCard/CategoryCard";
 
 const Men = () => {
   const products = useLoaderData();
-
-  console.log(products);
+  const [product, setProduct] = useState(null);
+  // console.log(product);
 
   return (
     <div>
@@ -15,9 +16,18 @@ const Men = () => {
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
         {products.map((product) => (
-          <CategoryCard key={product._id} product={product}></CategoryCard>
+          <>
+            <CategoryCard
+              key={product._id}
+              product={product}
+              setProduct={setProduct}
+            ></CategoryCard>
+          </>
         ))}
       </div>
+      {product && (
+        <BookingModal product={product} setProduct={setProduct}></BookingModal>
+      )}
     </div>
   );
 };

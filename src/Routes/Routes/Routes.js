@@ -12,6 +12,8 @@ import MyWishlist from "../../Pages/Dashboard/MyWishlist/MyWishlist";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/LoginAndRegister/Login/Login";
 import Register from "../../Pages/LoginAndRegister/Register/Register";
+import AdminRoute from "../AdminRoute/AdminRoute";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -45,11 +47,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard/all-users",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/my-order",
@@ -61,7 +71,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/all-seller",
-        element: <AllSeller></AllSeller>,
+        element: (
+          <AdminRoute>
+            <AllSeller></AllSeller>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/my-wishlist",
@@ -73,7 +87,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/all-buyer",
-        element: <AllBuyer></AllBuyer>,
+        element: (
+          <AdminRoute>
+            <AllBuyer></AllBuyer>
+          </AdminRoute>
+        ),
       },
     ],
   },

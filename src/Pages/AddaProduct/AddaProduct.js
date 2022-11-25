@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 const AddaProduct = () => {
@@ -18,10 +19,54 @@ const AddaProduct = () => {
   }, []);
 
   const imgbbKey = process.env.REACT_APP_imgbb_key;
-  console.log(imgbbKey);
 
   const handleAddProduct = (data) => {
-    console.log(data);
+    const productPhoto = data.productPhoto[0];
+    console.log(productPhoto);
+    const formData = new FormData();
+    formData.append("image", productPhoto);
+    const url = `https://api.imgbb.com/1/upload?key=${imgbbKey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgData) => {
+        console.log(imgData);
+        if (imgData.success) {
+          console.log(imgData.data.url);
+          const product = {
+            postDate: new Date(),
+            name: user.displayName,
+            email: user.email,
+            phone: data.phone,
+            photoURL: user.photoURL,
+            productPhoto: imgData.data.url,
+            productName: data.productName,
+            buyingPrice: data.buyingPrice,
+            sellingPrice: data.sellingPrice,
+            duration: data.duse,
+            description: data.description,
+            meetingLocation: data.meetingLocation,
+            condition: data.condition,
+            categories_id: data.category,
+          };
+          // save doctor information to the database
+          fetch("http://localhost:5000/products", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(product),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              toast.success(`Product added successfully !!!`);
+              //  navigate("/dashboard/manage-doctors");
+            });
+        }
+      });
   };
 
   const productConditions = [
@@ -40,13 +85,11 @@ const AddaProduct = () => {
               <span className="label-text">Select a Category of Product</span>
             </label>
             <select
-              {...register("category", {
-                required: "Category is Required",
-              })}
+              {...register("category", {})}
               className="select select-bordered w-full"
             >
               {categories.map((cat) => (
-                <option value={cat.categories_id} key={cat._id}>
+                <option selected value={cat.categories_id} key={cat._id}>
                   {cat.categories_id}
                 </option>
               ))}
@@ -168,9 +211,7 @@ const AddaProduct = () => {
               <span className="label-text">Select your product Condition</span>
             </label>
             <select
-              {...register("condition", {
-                required: "Condition is Required",
-              })}
+              {...register("condition", {})}
               className="select select-bordered w-full"
             >
               {productConditions.map((p, idx) => (

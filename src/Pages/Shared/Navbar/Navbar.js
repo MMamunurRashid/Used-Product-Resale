@@ -24,6 +24,17 @@ const Navbar = () => {
       <li>
         <Link to="/contact-us">Contact Us</Link>
       </li>
+      <li>
+        {user?.email ? (
+          <Link onClick={handleLogout} className="btn btn-ghost">
+            Logout
+          </Link>
+        ) : (
+          <Link className="btn btn-ghost" to="/login">
+            Login
+          </Link>
+        )}
+      </li>
     </>
   );
   return (
@@ -56,7 +67,7 @@ const Navbar = () => {
           </div>
           <Link
             to="/"
-            className="btn btn-ghost normal-case text-3xl font-serif font-semibold"
+            className="btn btn-ghost normal-case text-2xl md:text-3xl font-serif font-semibold"
           >
             Recycle Clothes
           </Link>
@@ -64,16 +75,28 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex ">
           <ul className="menu menu-horizontal p-0 ">{menuItem}</ul>
         </div>
+
         <div className="navbar-end">
-          {user?.email ? (
-            <Link onClick={handleLogout} className="btn">
-              Logout
-            </Link>
-          ) : (
-            <Link className="btn" to="/login">
-              Login
-            </Link>
-          )}
+          <label
+            htmlFor="dashboard-drawer"
+            tabIndex={2}
+            className="btn btn-ghost lg:hidden"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </label>
         </div>
       </div>
     </div>

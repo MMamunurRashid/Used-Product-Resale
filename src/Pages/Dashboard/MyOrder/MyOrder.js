@@ -1,7 +1,67 @@
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import { format } from "date-fns";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const MyOrder = () => {
-  return <div>My Orders</div>;
+  const { user } = useContext(AuthContext);
+
+  const url = `http://localhost:5000/my-order?email=${user.email}`;
+  const { data: bookings = [] } = useQuery({
+    queryKey: ["bookings", user?.email],
+    queryFn: async () => {
+      const res = await fetch(url);
+      const data = await res.json();
+      console.log(data);
+      return data;
+    },
+  });
+
+  return (
+    <div className="">
+      <h1 className="text-3xl mb-3"> My Order</h1>
+      <table className="table sm:w-full table-zebra">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Product</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Booking Date</th>
+
+            <th>payment</th>
+          </tr>
+        </thead>
+        <tbody>
+          {bookings.map((booking, idx) => (
+            <tr key={booking._id}>
+              <th>{idx + 1}</th>
+              <td>
+                <div className="avatar">
+                  <div className="rounded w-14 h-14">
+                    <img src={booking.productPhoto} alt="" />
+                  </div>
+                </div>
+              </td>
+              <td>{booking.productName}</td>
+              <td>{booking.productPrice}</td>
+              <td>{format(new Date(booking.bookingDate), "ppP")}</td>
+
+              <td>
+                <Link
+                  to={`/dashboard/payment/${booking._id}`}
+                  className="btn btn-primary btn-sm"
+                >
+                  Pay
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default MyOrder;

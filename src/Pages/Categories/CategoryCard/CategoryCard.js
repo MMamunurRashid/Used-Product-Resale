@@ -63,7 +63,7 @@ const CategoryCard = ({ product, setProduct }) => {
           <div className="">
             <h1>{name}</h1>
             {/* <p>{email}</p> */}
-            <p>{phone}</p>
+            {/* <p>{phone}</p> */}
           </div>
           <p>{postDate}</p>
         </div>

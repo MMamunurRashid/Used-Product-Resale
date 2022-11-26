@@ -1,14 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import Loading from "../../Shared/Loading/Loading";
 
 const MyProduct = () => {
   const { user } = useContext(AuthContext);
 
   const url = `http://localhost:5000/my-product?email=${user?.email}`;
-  const { data: products = [] } = useQuery({
+  const {
+    data: products = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["products", user?.email],
     queryFn: async () => {
       const res = await fetch(url, {});
@@ -16,6 +22,26 @@ const MyProduct = () => {
       return data;
     },
   });
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+  const handleAdvertise = (id) => {
+    // console.log("click", id);
+    fetch(`http://localhost:5000/advertise/${id}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success(`Your Product Advertised`);
+          if (isLoading) {
+            return <Loading></Loading>;
+          }
+          refetch();
+        }
+      });
+  };
 
   return (
     <div className="">
@@ -29,6 +55,7 @@ const MyProduct = () => {
             <th>Selling Price</th>
             <th>Post Time Date</th>
             <th>Status</th>
+            <th>Advertise</th>
           </tr>
         </thead>
         <tbody>
@@ -40,6 +67,22 @@ const MyProduct = () => {
               <td>{product.sellingPrice}</td>
               <td>{format(new Date(product.postDate), "ppP")}</td>
               <td>Unsold</td>
+              {product?.status === "advertise" ? (
+                <td>
+                  <button className="btn btn-xs btn-primary btn-disabled">
+                    Advertise
+                  </button>
+                </td>
+              ) : (
+                <td>
+                  <button
+                    onClick={() => handleAdvertise(product._id)}
+                    className="btn btn-xs btn-primary"
+                  >
+                    Advertise
+                  </button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>

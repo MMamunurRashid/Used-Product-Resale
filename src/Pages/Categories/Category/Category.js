@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import BookingModal from "../BookingModal/BookingModal";
 import CategoryCard from "../CategoryCard/CategoryCard";
 
-const Men = () => {
+const Category = () => {
   const products = useLoaderData();
   const [product, setProduct] = useState(null);
   // console.log(product);
@@ -32,4 +32,4 @@ const Men = () => {
   );
 };
 
-export default Men;
+export default Category;

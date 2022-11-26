@@ -8,7 +8,7 @@ const BookingModal = ({ product, setProduct }) => {
   const {
     categories_id,
     productName,
-
+    _id,
     sellingPrice,
     productPhoto,
 
@@ -29,6 +29,7 @@ const BookingModal = ({ product, setProduct }) => {
 
     const booking = {
       bookingDate: new Date(),
+      productId: _id,
       categories_id,
       productPhoto,
       productName: productName,

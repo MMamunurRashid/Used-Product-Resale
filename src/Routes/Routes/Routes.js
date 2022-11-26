@@ -9,6 +9,7 @@ import AllSeller from "../../Pages/Dashboard/AllSeller/AllSeller";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import MyOrder from "../../Pages/Dashboard/MyOrder/MyOrder";
 import MyProduct from "../../Pages/Dashboard/MyProduct/MyProduct";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
 
 import ReportedProduct from "../../Pages/Dashboard/ReportedProduct/ReportedProduct";
 import Home from "../../Pages/Home/Home/Home";
@@ -17,12 +18,14 @@ import Register from "../../Pages/LoginAndRegister/Register/Register";
 import NotFound from "../../Pages/NotFound/NotFound";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import SellerRoute from "../SellerRoute/SellerRoute";
+import DisplayErrorElement from "../../Pages/Shared/DisplayErrorElement/DisplayErrorElement";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-
+    errorElement: <DisplayErrorElement></DisplayErrorElement>,
     children: [
       {
         path: "/",
@@ -46,6 +49,10 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/category/${params.id}`),
       },
+      {
+        path: "*",
+        element: <NotFound></NotFound>,
+      },
     ],
   },
   {
@@ -55,6 +62,7 @@ const router = createBrowserRouter([
         <DashboardLayout></DashboardLayout>
       </PrivateRoute>
     ),
+    errorElement: <DisplayErrorElement></DisplayErrorElement>,
     children: [
       {
         path: "/dashboard/all-users",
@@ -70,7 +78,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/add-product",
-        element: <AddaProduct></AddaProduct>,
+        element: (
+          <SellerRoute>
+            <AddaProduct></AddaProduct>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/all-seller",
@@ -90,7 +102,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/my-product",
-        element: <MyProduct></MyProduct>,
+        element: (
+          <SellerRoute>
+            <MyProduct></MyProduct>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/all-buyer",
@@ -99,6 +115,16 @@ const router = createBrowserRouter([
             <AllBuyer></AllBuyer>
           </AdminRoute>
         ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment></Payment>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/bookings/${params.id}`),
+      },
+      {
+        path: "*",
+        element: <NotFound></NotFound>,
       },
     ],
   },

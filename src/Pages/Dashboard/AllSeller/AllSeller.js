@@ -17,6 +17,9 @@ const AllSeller = () => {
     // console.log("click", id);
     fetch(`http://localhost:5000/seller/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -31,6 +34,9 @@ const AllSeller = () => {
     // console.log("click", id);
     fetch(`http://localhost:5000/users/seller/${id}`, {
       method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {

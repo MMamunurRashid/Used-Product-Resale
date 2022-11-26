@@ -51,7 +51,7 @@ const AddaProduct = () => {
             condition: data.condition,
             categories_id: data.category,
           };
-          // save doctor information to the database
+          // save  information to the database
           fetch("http://localhost:5000/products", {
             method: "POST",
             headers: {
@@ -63,7 +63,7 @@ const AddaProduct = () => {
             .then((data) => {
               console.log(data);
               toast.success(`Product added successfully !!!`);
-              //  navigate("/dashboard/manage-doctors");
+            
             });
         }
       });

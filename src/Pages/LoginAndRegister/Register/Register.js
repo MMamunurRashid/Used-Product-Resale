@@ -1,21 +1,30 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
 import toast from "react-hot-toast";
+import useToken from "../../../hooks/useToken";
 
 const Register = () => {
   const { googleLogin, createUser, updateUser } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
   const [signupError, setSignupError] = useState("");
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [createdUserEmail, setCreatedUserEmail] = useState("");
+  const [token] = useToken(createdUserEmail);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const handleSignup = (data) => {
     console.log(data);
@@ -29,13 +38,15 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         //console.log(user);
-        toast.success("Your Registration Successful!!");
+
         const userInfo = {
           displayName: data.name,
         };
         updateUser(userInfo)
           .then(() => {
             saveUserInDb(data.name, email, option);
+            setCreatedUserEmail(email);
+            toast.success("Your Registration Successful!!");
           })
           .catch((err) => console.error(err));
       })
@@ -54,6 +65,7 @@ const Register = () => {
         console.log(user);
         const option = "Buyer";
         saveUserInDb(user.displayName, user.email, option);
+        setCreatedUserEmail(user.email);
         toast.success("Your Registration Successful!!");
       })
       .catch((err) => {

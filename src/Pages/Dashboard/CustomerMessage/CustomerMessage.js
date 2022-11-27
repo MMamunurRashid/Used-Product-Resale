@@ -1,15 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import Loading from "../../Shared/Loading/Loading";
 
 const CustomerMessage = () => {
   const [read, setRead] = useState(false);
   const url = `http://localhost:5000/messages`;
-  const { data: messages = [], refetch } = useQuery({
+  const {
+    data: messages = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["messages"],
     queryFn: async () => {
       const res = await fetch(url);
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });
@@ -17,6 +22,9 @@ const CustomerMessage = () => {
   const handleRead = (id) => {
     setRead(true);
   };
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div>
       <h1 className="text-3xl">All Seller</h1>

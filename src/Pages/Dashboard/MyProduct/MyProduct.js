@@ -39,7 +39,7 @@ const MyProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.modifiedCount > 0) {
           toast.success(`Your Product Advertised`);
           if (isLoading) {

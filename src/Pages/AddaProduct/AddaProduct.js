@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useNavigation } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
+import Loading from "../Shared/Loading/Loading";
 
 const AddaProduct = () => {
   const { user } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
+  const navigation = useNavigation();
+
   const {
     register,
     formState: { errors },
@@ -20,11 +23,14 @@ const AddaProduct = () => {
       .then((data) => setCategories(data));
   }, []);
 
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
   const imgbbKey = process.env.REACT_APP_imgbb_key;
 
   const handleAddProduct = (data) => {
     const productPhoto = data.productPhoto[0];
-    console.log(productPhoto);
+    // console.log(productPhoto);
     const formData = new FormData();
     formData.append("image", productPhoto);
     const url = `https://api.imgbb.com/1/upload?key=${imgbbKey}`;
@@ -34,9 +40,9 @@ const AddaProduct = () => {
     })
       .then((res) => res.json())
       .then((imgData) => {
-        console.log(imgData);
+        // console.log(imgData);
         if (imgData.success) {
-          console.log(imgData.data.url);
+          // console.log(imgData.data.url);
           const product = {
             postDate: new Date(),
             name: user.displayName,
@@ -63,7 +69,7 @@ const AddaProduct = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
+              // console.log(data);
               toast.success(`Product added successfully !!!`);
               navigate("/dashboard/my-product");
             });
@@ -76,6 +82,7 @@ const AddaProduct = () => {
     { condition: "Good" },
     { condition: "Fair" },
   ];
+
   // console.log(productConditions);
   return (
     <div className="mb-10 ">

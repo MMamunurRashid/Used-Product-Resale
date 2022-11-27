@@ -4,8 +4,11 @@ import verified from "../../../assets/6364343.png";
 import unverified from "../../../assets/png-transparent-blue-check-mark-area-circle-symbol-thumbnail.png";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { useNavigation } from "react-router-dom";
+import Loading from "../../Shared/Loading/Loading";
 
 const CategoryCard = ({ product, setProduct }) => {
+  const navigation = useNavigation();
   const postDate = format(new Date(product.postDate), "ppP");
   const {
     categories_id,
@@ -44,6 +47,9 @@ const CategoryCard = ({ product, setProduct }) => {
         }
       });
   };
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="my-5">

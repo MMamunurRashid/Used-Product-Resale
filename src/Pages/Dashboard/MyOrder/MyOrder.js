@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import Loading from "../../Shared/Loading/Loading";
 
 const MyOrder = () => {
   const { user } = useContext(AuthContext);
-
+  const navigation = useNavigation();
   const url = `http://localhost:5000/my-order?email=${user.email}`;
   const { data: bookings = [] } = useQuery({
     queryKey: ["bookings", user?.email],
@@ -17,11 +18,13 @@ const MyOrder = () => {
         },
       });
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });
-
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
   return (
     <div className="">
       <h1 className="text-3xl mb-3"> My Order</h1>
@@ -75,7 +78,9 @@ const MyOrder = () => {
         </table>
       ) : (
         <>
-          <h1 className="text-3xl text-center">You don't place any yet!!</h1>
+          <h1 className="text-3xl text-center">
+            You don't place any order yet!!
+          </h1>
         </>
       )}
     </div>

@@ -27,7 +27,7 @@ const Register = () => {
   }
 
   const handleSignup = (data) => {
-    console.log(data);
+    // console.log(data);
 
     const email = data.email;
     const password = data.password;
@@ -58,11 +58,11 @@ const Register = () => {
   };
 
   const handleGoogleLogin = () => {
-    console.log("click");
+    // console.log("click");
     googleLogin(googleProvider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         const option = "Buyer";
         saveUserInDb(user.displayName, user.email, option);
         setCreatedUserEmail(user.email);
@@ -87,7 +87,7 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("save-user", data);
+        // console.log("save-user", data);
         //    setCreatedUserEmail(email);
       });
   };

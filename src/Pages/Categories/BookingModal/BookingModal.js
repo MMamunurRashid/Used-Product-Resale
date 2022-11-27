@@ -4,14 +4,14 @@ import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const BookingModal = ({ product, setProduct }) => {
   const { user } = useContext(AuthContext);
-  console.log(product);
+
+  // console.log(product);
   const {
     categories_id,
     productName,
     _id,
     sellingPrice,
     productPhoto,
-
     meetingLocation,
     phone: sellerPhone,
     name: sellerName,

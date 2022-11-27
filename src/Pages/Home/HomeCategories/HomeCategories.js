@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import CategoriesCard from "./HomeCategoriesCard";
 import axios from "axios";
+import { useNavigation } from "react-router-dom";
+import Loading from "../../Shared/Loading/Loading";
 
 const Categories = () => {
+  const navigation = useNavigation();
   const [categories, setCategories] = useState([]);
-
   useEffect(() => {
-    // fetch("http://localhost:5000/categories")
-    //   .then((res) => res.json())
-    //   .then((data) => setCategories(data));
     // data fetch using axios
     axios
       .get("http://localhost:5000/categories")
       .then((data) => setCategories(data.data));
   }, []);
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
   return (
     <div className="my-10 mx-3">
       <h1 className="text-2xl font-serif font-bold mx-3">

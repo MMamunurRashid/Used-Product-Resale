@@ -26,7 +26,7 @@ const ContactUs = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         toast.success(
           "Thanks for your message, stay connected you us. Have a good day!!"
         );

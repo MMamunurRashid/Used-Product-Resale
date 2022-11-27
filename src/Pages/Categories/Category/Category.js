@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
+import Loading from "../../Shared/Loading/Loading";
 import BookingModal from "../BookingModal/BookingModal";
 import CategoryCard from "../CategoryCard/CategoryCard";
 
@@ -7,6 +8,10 @@ const Category = () => {
   const products = useLoaderData();
   const [product, setProduct] = useState(null);
   // console.log(products);
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="mx-3 md:mx-0">

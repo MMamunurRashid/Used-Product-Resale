@@ -1,14 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
+import { useNavigation } from "react-router-dom";
+import Loading from "../../Shared/Loading/Loading";
 
 const AllBuyer = () => {
+  const navigation = useNavigation();
   const { data: buyers = [], refetch } = useQuery({
     queryKey: ["buyer"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/buyer");
+      const res = await fetch("http://localhost:5000/buyer", {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });
@@ -26,6 +33,9 @@ const AllBuyer = () => {
         }
       });
   };
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
   return (
     <div>
       <div>

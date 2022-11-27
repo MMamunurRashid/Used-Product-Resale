@@ -17,7 +17,7 @@ const ContactUs = () => {
       subject: subject,
       message: message,
     };
-    fetch("http://localhost:5000/messages", {
+    fetch("https://recycle-clothes-server.vercel.app/messages", {
       method: "POST",
       headers: {
         "content-type": "application/json",

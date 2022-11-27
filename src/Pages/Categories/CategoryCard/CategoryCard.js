@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useNavigation } from "react-router-dom";
 import Loading from "../../Shared/Loading/Loading";
+import useTitle from "../../../hooks/useTitle";
 
 const CategoryCard = ({ product, setProduct }) => {
   const navigation = useNavigation();
@@ -22,8 +23,9 @@ const CategoryCard = ({ product, setProduct }) => {
     name,
     email,
   } = product;
+  useTitle(`Category ${categories_id}`);
 
-  const url = `http://localhost:5000/sellerquery?email=${email}`;
+  const url = `https://recycle-clothes-server.vercel.app/sellerquery?email=${email}`;
   const { data: sellers = [] } = useQuery({
     queryKey: ["sellers", email],
     queryFn: async () => {
@@ -36,7 +38,7 @@ const CategoryCard = ({ product, setProduct }) => {
 
   const handleReport = (id) => {
     // console.log("click", id);
-    fetch(`http://localhost:5000/report-product/${id}`, {
+    fetch(`https://recycle-clothes-server.vercel.app/report-product/${id}`, {
       method: "PUT",
     })
       .then((res) => res.json())

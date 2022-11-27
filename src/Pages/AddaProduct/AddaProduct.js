@@ -4,8 +4,11 @@ import toast from "react-hot-toast";
 import { useNavigate, useNavigation } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
 import Loading from "../Shared/Loading/Loading";
+import useTitle from "../../hooks/useTitle";
 
 const AddaProduct = () => {
+  useTitle("Add A Product");
+
   const { user } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
@@ -18,7 +21,7 @@ const AddaProduct = () => {
   } = useForm();
 
   useEffect(() => {
-    fetch("http://localhost:5000/categories")
+    fetch("https://recycle-clothes-server.vercel.app/categories")
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
@@ -60,7 +63,7 @@ const AddaProduct = () => {
             categories_id: data.category,
           };
           // save  information to the database
-          fetch("http://localhost:5000/products", {
+          fetch("https://recycle-clothes-server.vercel.app/products", {
             method: "POST",
             headers: {
               "content-type": "application/json",

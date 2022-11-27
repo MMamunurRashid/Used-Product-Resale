@@ -1,10 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import useTitle from "../../../hooks/useTitle";
 import Loading from "../../Shared/Loading/Loading";
 
 const CustomerMessage = () => {
+  useTitle("Customer Message");
+
   const [read, setRead] = useState(false);
-  const url = `http://localhost:5000/messages`;
+  const url = `https://recycle-clothes-server.vercel.app/messages`;
   const {
     data: messages = [],
     refetch,
@@ -27,7 +30,7 @@ const CustomerMessage = () => {
   }
   return (
     <div>
-      <h1 className="text-3xl">All Seller</h1>
+      <h1 className="text-3xl">Customer Review and Message</h1>
       <table className="table sm:w-full table-zebra">
         <thead>
           <tr>

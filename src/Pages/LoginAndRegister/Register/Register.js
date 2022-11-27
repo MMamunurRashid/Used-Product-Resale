@@ -78,7 +78,7 @@ const Register = () => {
   const saveUserInDb = (name, email, option) => {
     const verify = "unverified";
     const user = { name, email, option, verify };
-    fetch(`http://localhost:5000/users`, {
+    fetch(`https://recycle-clothes-server.vercel.app/users`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

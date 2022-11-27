@@ -2,9 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import React from "react";
 import toast from "react-hot-toast";
+import useTitle from "../../../hooks/useTitle";
 import Loading from "../../Shared/Loading/Loading";
 
 const ReportedProduct = () => {
+  useTitle("Reported Product");
+
   const {
     data: reportedProducts = [],
     refetch,
@@ -12,11 +15,14 @@ const ReportedProduct = () => {
   } = useQuery({
     queryKey: ["reportedProducts"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/reported-product", {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const res = await fetch(
+        "https://recycle-clothes-server.vercel.app/reported-product",
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       const data = await res.json();
       // console.log(data);
       return data;
@@ -28,7 +34,7 @@ const ReportedProduct = () => {
   }
   const handleDelete = (id) => {
     //   console.log("click", id);
-    fetch(`http://localhost:5000/reported-product/${id}`, {
+    fetch(`https://recycle-clothes-server.vercel.app/reported-product/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

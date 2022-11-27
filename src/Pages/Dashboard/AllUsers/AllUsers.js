@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
+import useTitle from "../../../hooks/useTitle";
 import Loading from "../../Shared/Loading/Loading";
 
 const AllUsers = () => {
+  useTitle("All Users");
+
   const {
     data: users = [],
     refetch,
@@ -11,18 +14,21 @@ const AllUsers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users", {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const res = await fetch(
+        "https://recycle-clothes-server.vercel.app/users",
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       const data = await res.json();
       return data;
     },
   });
 
   const handleMakeAdmin = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
+    fetch(`https://recycle-clothes-server.vercel.app/users/admin/${id}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

@@ -3,17 +3,22 @@ import React from "react";
 import toast from "react-hot-toast";
 import { useNavigation } from "react-router-dom";
 import Loading from "../../Shared/Loading/Loading";
-
+import useTitle from "../../../hooks/useTitle";
 const AllSeller = () => {
+  useTitle("All Seller");
+
   const navigation = useNavigation();
   const { data: sellers = [], refetch } = useQuery({
     queryKey: ["seller"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/seller", {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const res = await fetch(
+        "https://recycle-clothes-server.vercel.app/seller",
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       const data = await res.json();
       // console.log(data);
       return data;
@@ -22,7 +27,7 @@ const AllSeller = () => {
 
   const handleDelete = (id) => {
     // console.log("click", id);
-    fetch(`http://localhost:5000/seller/${id}`, {
+    fetch(`https://recycle-clothes-server.vercel.app/seller/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -39,7 +44,7 @@ const AllSeller = () => {
   };
   const handleVerify = (id) => {
     // console.log("click", id);
-    fetch(`http://localhost:5000/users/seller/${id}`, {
+    fetch(`https://recycle-clothes-server.vercel.app/users/seller/${id}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

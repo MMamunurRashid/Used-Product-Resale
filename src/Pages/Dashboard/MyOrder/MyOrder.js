@@ -3,12 +3,15 @@ import { format } from "date-fns";
 import React, { useContext } from "react";
 import { Link, useNavigation } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import useTitle from "../../../hooks/useTitle";
 import Loading from "../../Shared/Loading/Loading";
 
 const MyOrder = () => {
+  useTitle("My Order");
+
   const { user } = useContext(AuthContext);
   const navigation = useNavigation();
-  const url = `http://localhost:5000/my-order?email=${user.email}`;
+  const url = `https://recycle-clothes-server.vercel.app/my-order?email=${user.email}`;
   const { data: bookings = [] } = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: async () => {

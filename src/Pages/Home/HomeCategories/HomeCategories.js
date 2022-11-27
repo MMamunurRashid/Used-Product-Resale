@@ -10,7 +10,7 @@ const Categories = () => {
   useEffect(() => {
     // data fetch using axios
     axios
-      .get("http://localhost:5000/categories")
+      .get("https://recycle-clothes-server.vercel.app/categories")
       .then((data) => setCategories(data.data));
   }, []);
   if (navigation.state === "loading") {

@@ -49,7 +49,9 @@ const router = createBrowserRouter([
         path: "/category/:id",
         element: <Category></Category>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.id}`),
+          fetch(
+            `https://recycle-clothes-server.vercel.app/category/${params.id}`
+          ),
       },
       {
         path: "/blog",
@@ -134,7 +136,9 @@ const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookings/${params.id}`),
+          fetch(
+            `https://recycle-clothes-server.vercel.app/bookings/${params.id}`
+          ),
       },
       {
         path: "*",

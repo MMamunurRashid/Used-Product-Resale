@@ -8,7 +8,7 @@ import Loading from "../../Shared/Loading/Loading";
 const AdvertiseProduct = () => {
   const navigation = useNavigation();
   const [product, setProduct] = useState(null);
-  const url = `http://localhost:5000/advertise`;
+  const url = `https://recycle-clothes-server.vercel.app/advertise`;
   const { data: products = [] } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {

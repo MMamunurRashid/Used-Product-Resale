@@ -3,17 +3,23 @@ import React from "react";
 import toast from "react-hot-toast";
 import { useNavigation } from "react-router-dom";
 import Loading from "../../Shared/Loading/Loading";
+import useTitle from "../../../hooks/useTitle";
 
 const AllBuyer = () => {
+  useTitle("All Buyers");
+
   const navigation = useNavigation();
   const { data: buyers = [], refetch } = useQuery({
     queryKey: ["buyer"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/buyer", {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const res = await fetch(
+        "https://recycle-clothes-server.vercel.app/buyer",
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       const data = await res.json();
       // console.log(data);
       return data;
@@ -22,7 +28,7 @@ const AllBuyer = () => {
 
   const handleDelete = (id) => {
     // console.log("click", id);
-    fetch(`http://localhost:5000/buyer/${id}`, {
+    fetch(`https://recycle-clothes-server.vercel.app/buyer/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

@@ -4,12 +4,15 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import useTitle from "../../../hooks/useTitle";
 import Loading from "../../Shared/Loading/Loading";
 
 const MyProduct = () => {
+  useTitle("My-Product");
+
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/my-product?email=${user?.email}`;
+  const url = `https://recycle-clothes-server.vercel.app/my-product?email=${user?.email}`;
   const {
     data: products = [],
     refetch,
@@ -31,7 +34,7 @@ const MyProduct = () => {
   }
   const handleAdvertise = (id) => {
     // console.log("click", id);
-    fetch(`http://localhost:5000/advertise/${id}`, {
+    fetch(`https://recycle-clothes-server.vercel.app/advertise/${id}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

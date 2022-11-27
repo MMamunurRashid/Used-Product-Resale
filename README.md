@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# Recycle Clothes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![This is an image](https://i.ibb.co/qrfsmwC/black-white-alphabet-letter-rc-r-c-logo-icon-vector-20647498.jpg)
 
-## Available Scripts
+**Classified platform, a Marketplace Connecting Buyers and Sellers**
 
-In the project directory, you can run:
+**Live Web site Link:** https://recycle-clothe.web.app/
 
-### `npm start`
+**Admin email:** admin@admin.com
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Password:** admin@0101
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features:
 
-### `npm test`
+- The web is about the **Used product resale** market.
+- Here user can buy some one used product and as well as sell used product with handsame amount of price.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Home Page and Products page**
 
-### `npm run build`
+- In Home page you can see some information about the website in the banner.
+- In home page under the Banner, Here you can se there was three types of product category which is Men, Women, and Baby.
+- Every Category card have a button called view category. If you hit that button you can go category/:id route and see available product on that category.(if available) and user can buy product to click book now button on the each product card.
+- Book now button open a modal that modal take some information,
+- After submit the modal the order are placed you have to pay the bill from My Order page that is in Dashboard Route.
+- Under Category section there was a conditional section called Advertise Product and user can buy product from here also, If any seller advertise his/her product that is show in this section.
+- Under the That here is the section called contact us, If any user want giye complain , suggestion or anything else he can giv that in that section have input field, If he/she want they also hide there identity.(name email is not fixed for loged user).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**LogIn, Register**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- If you don't have any account and you want to register with email password. **PLEASE** click register button. that is located in top of the login in button on the login page.
+- If you can go register there was form, you can register there, as a buyer or seller. if you logging with google then you are a buyer.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Dashboard**
 
-### `npm run eject`
+For Buyer
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+-In dashboard there was only order route.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- If any buyer book any product that is show here.
+- and there was a button called **PAY**, pay button redirect in payment here you can pay the price with a credit card.(Visa, Master American Express ETC)
+- If any product paid this product is booked and that product is not be visile anywhere like, the product not in products page and if advertise there also not visible.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+For Seller
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Seller can also buy product
+- The seller see Add Product, from here seller can add his own product, hw have to give some info.
+- my-product route he can se his product status, like sold or unsold, Unsold product he can able to advertise.
 
-## Learn More
+For Admin
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Admin can see all seller , all Users , All Buyers
+- All users he can see evry one role and also he can able to make admin any one.
+- all buyers info and able to delete any buyers
+- all sellers info and he can delete any of them.
+- reported product, here he can see reported product, if any one report any product he can see and he can also able to delte that product.
+- customer message if any one give any message from via contact us, sender info and message visible here.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## List of Technology
 
-### Code Splitting
+- React JS (JavaScript Library)
+- Tailwind CSS (CSS framework)
+- DaisyUI (tailwind library)
+- Node JS (JavaScript Runtime enviroment)
+- express JS.
+- MongoDb(NoSQL Database)
+- Firebase Authentication
+- Stripe Payment Getway and ect.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Happy Coding**.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thank You

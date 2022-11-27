@@ -20,6 +20,7 @@ import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
 import DisplayErrorElement from "../../Pages/Shared/DisplayErrorElement/DisplayErrorElement";
+import CustomerMessage from "../../Pages/Dashboard/CustomerMessage/CustomerMessage";
 
 const router = createBrowserRouter([
   {
@@ -97,6 +98,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ReportedProduct></ReportedProduct>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/customer-message",
+        element: (
+          <AdminRoute>
+            <CustomerMessage></CustomerMessage>
           </AdminRoute>
         ),
       },

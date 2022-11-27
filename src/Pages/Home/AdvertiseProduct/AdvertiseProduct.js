@@ -20,7 +20,7 @@ const AdvertiseProduct = () => {
       {products.length ? (
         <>
           <h1 className="text-2xl font-serif font-bold ">Advertise Product</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5 justify-evenly">
             {products.map((product) => (
               <>
                 <CategoryCard

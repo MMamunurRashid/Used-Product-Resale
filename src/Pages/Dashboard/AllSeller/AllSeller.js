@@ -49,7 +49,7 @@ const AllSeller = () => {
   return (
     <div>
       <div>
-        <h1 className="text-3xl">All Buyer</h1>
+        <h1 className="text-3xl">All Seller</h1>
         <table className="table sm:w-full table-zebra">
           <thead>
             <tr>

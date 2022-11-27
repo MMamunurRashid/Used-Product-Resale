@@ -19,7 +19,7 @@ const AdvertiseProduct = () => {
     <div>
       {products.length ? (
         <>
-          <h1>Advertise Product</h1>
+          <h1 className="text-2xl font-serif font-bold ">Advertise Product</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
             {products.map((product) => (
               <>

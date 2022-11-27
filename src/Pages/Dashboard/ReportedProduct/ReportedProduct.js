@@ -17,12 +17,15 @@ const ReportedProduct = () => {
     //   console.log("click", id);
     fetch(`http://localhost:5000/reported-product/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
           refetch();
-          toast.success(`Buyer deleted successfully`);
+          toast.success(`Product deleted successfully`);
         }
       });
   };

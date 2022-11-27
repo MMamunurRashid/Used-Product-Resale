@@ -74,7 +74,7 @@ const MyProduct = () => {
               <td>{product.sellingPrice}</td>
               <td>{format(new Date(product.postDate), "ppP")}</td>
               <td>Unsold</td>
-              {product?.status === "advertise" ? (
+              {product?.status === "advertise" || product.status !== "sold" ? (
                 <td>
                   <button className="btn btn-xs btn-primary btn-disabled">
                     Advertise

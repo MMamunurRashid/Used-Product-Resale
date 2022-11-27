@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 const AddaProduct = () => {
   const { user } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -63,7 +65,7 @@ const AddaProduct = () => {
             .then((data) => {
               console.log(data);
               toast.success(`Product added successfully !!!`);
-            
+              navigate("/dashboard/my-product");
             });
         }
       });
@@ -76,9 +78,9 @@ const AddaProduct = () => {
   ];
   // console.log(productConditions);
   return (
-    <div className="my-10">
+    <div className="mb-10 ">
       <h1 className="text-5xl font-serif font-bold">Add A Product</h1>
-      <form onSubmit={handleSubmit(handleAddProduct)} className=" mt-10">
+      <form onSubmit={handleSubmit(handleAddProduct)} className=" mt-10 mx-3">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <label className="label">

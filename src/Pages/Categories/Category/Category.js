@@ -9,8 +9,8 @@ const Category = () => {
   // console.log(products);
 
   return (
-    <div>
-      <h1 className="text-2xl text">
+    <div className="mx-3 md:mx-0">
+      <h1 className="text-2xl text font-serif font-semibold">
         This Category Have {}
         {products?.length !== 0 ? products.length + " Products" : "No Product"}
       </h1>

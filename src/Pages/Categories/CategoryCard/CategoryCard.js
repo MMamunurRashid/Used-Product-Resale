@@ -46,24 +46,31 @@ const CategoryCard = ({ product, setProduct }) => {
   };
 
   return (
-    <div>
+    <div className="my-5">
       {product?.status !== "sold" && (
-        <div className="card card-compact w-full bg-base-100 shadow-xl">
+        <div className="card  card-compact sm:w-96 bg-base-100 shadow-xl">
           <figure>
-            <img className="h-80 w-full" src={productPhoto} alt="Shoes" />
+            <img className="h-60 w-full" src={productPhoto} alt="Shoes" />
           </figure>
-
           <div className="card-body">
-            <h2 className="card-title">{productName}</h2>
-            <p>Product Category: {categories_id}</p>
-            <p>Buying Price : {buyingPrice} BDT</p>
-            <p>Selling Price : {sellingPrice} BDT</p>
-            <p>Condition : {condition}</p>
-            <p>Duration of Used : {duration}</p>
-            <p>Meeting Location: {meetingLocation}</p>
+            <h2 className="text-2xl font-bold font-serif">{productName}</h2>
+            <p className="text-xl font-semibold">Price : {sellingPrice} BDT</p>
+            <div tabIndex={0} className="collapse  font-mono">
+              <div className="collapse-title text-lg font-medium">
+                Click here to see product all details
+              </div>
+              <div className="collapse-content text-lg">
+                <p>Product Category: {categories_id}</p>
+                <p>Buying Price : {buyingPrice} BDT</p>
+                <p>Selling Price : {sellingPrice} BDT</p>
+                <p>Condition : {condition}</p>
+                <p>Duration of Used : {duration}</p>
+                <p>Meeting Location: {meetingLocation}</p>
+              </div>
+            </div>
           </div>
-          <h1 className="text-2xl text-center">Seller Information </h1>
-          <div className="flex justify-evenly mx-3">
+          <h1 className="text-xl text-center">Seller Information </h1>
+          <div className="flex justify-evenly mx-3 font-serif">
             <div className="avatar">
               <div className="w-7 h-7 rounded-full">
                 {

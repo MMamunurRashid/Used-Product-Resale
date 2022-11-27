@@ -73,14 +73,8 @@ const MyProduct = () => {
               <td>{product.buyingPrice}</td>
               <td>{product.sellingPrice}</td>
               <td>{format(new Date(product.postDate), "ppP")}</td>
-              <td>Unsold</td>
-              {product?.status === "advertise" || product.status !== "sold" ? (
-                <td>
-                  <button className="btn btn-xs btn-primary btn-disabled">
-                    Advertise
-                  </button>
-                </td>
-              ) : (
+              <td>{product?.status === "sold" ? product.status : "Unsold"}</td>
+              {product?.status !== "advertise" && product.status !== "sold" ? (
                 <td>
                   <button
                     onClick={() => handleAdvertise(product._id)}
@@ -88,6 +82,10 @@ const MyProduct = () => {
                   >
                     Advertise
                   </button>
+                </td>
+              ) : (
+                <td>
+                  <button className="btn btn-xs disabled">Advertised</button>
                 </td>
               )}
             </tr>

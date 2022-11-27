@@ -36,7 +36,7 @@ const ContactUs = () => {
     <div
       className="text-center text-white font-serif opacity-90 my-5"
       style={{
-        "background-image": `url(${img})`,
+        backgroundImage: `url(${img})`,
       }}
     >
       <div className="py-10 ">
@@ -48,33 +48,33 @@ const ContactUs = () => {
             your message in below.
           </p>
         </div>
-        <div className="w-1/3 mx-auto mt-5 text-black">
+        <div className="md:w-1/3 mx-auto mt-5 text-black">
           <form onSubmit={handleContact}>
             <input
               name="name"
               type="text"
               placeholder="Type here your Name"
-              className="input input-bordered w-full"
+              className="input input-bordered md:w-full w-11/12"
             />
             <input
               name="email"
               type="email"
               placeholder="Type here your Email"
-              className="input input-bordered w-full mt-4"
+              className="input input-bordered md:w-full w-11/12 mt-4"
             />
             <input
               type="text"
               name="subject"
               placeholder="Type here Subject"
-              className="input input-bordered w-full mt-4"
+              className="input input-bordered md:w-full w-11/12 mt-4"
             />
             <textarea
               name="message"
-              className="textarea textarea-bordered w-full mt-4"
+              className="textarea textarea-bordered md:w-full w-11/12 mt-4"
               placeholder="Type here your Message"
             ></textarea>
             <input
-              className="btn btn-secondary px-32 mt-5"
+              className="btn btn-secondary md:px-32 mt-5"
               type="submit"
               value="Submit"
             />

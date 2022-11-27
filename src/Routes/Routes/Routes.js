@@ -21,6 +21,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
 import DisplayErrorElement from "../../Pages/Shared/DisplayErrorElement/DisplayErrorElement";
 import CustomerMessage from "../../Pages/Dashboard/CustomerMessage/CustomerMessage";
+import Blog from "../../Pages/Blog/Blog";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
         element: <Category></Category>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/category/${params.id}`),
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
       },
       {
         path: "*",

@@ -22,11 +22,9 @@ const Navbar = () => {
       ) : (
         <></>
       )}
+
       <li>
-        <Link to="/about">About</Link>
-      </li>
-      <li>
-        <Link to="/contact-us">Contact Us</Link>
+        <Link to="/blog">Blog</Link>
       </li>
       <li>
         {user?.email ? (

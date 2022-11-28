@@ -72,6 +72,13 @@ const BookingModal = ({ product, setProduct }) => {
           >
             ✕
           </label>
+          {user?.email ? (
+            <></>
+          ) : (
+            <p className="text-2xl font-serif text-red-600">
+              Please Log in First
+            </p>
+          )}
           <p>Product Information</p>
           <h3 className="text-lg font-bold">Product Name: {productName}</h3>
           <p>Price: {sellingPrice}</p>

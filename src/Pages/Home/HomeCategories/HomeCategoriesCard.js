@@ -1,9 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
+import Loading from "../../Shared/Loading/Loading";
 
 const CategoriesCard = ({ category }) => {
+  const navigation = useNavigation();
   // console.log(category);
   const { picture, category_name, categories_id } = category;
+
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="card sm:w-96 bg-base-100 shadow-xl my-5">

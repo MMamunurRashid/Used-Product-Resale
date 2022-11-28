@@ -25,6 +25,10 @@ const AllSeller = () => {
     },
   });
 
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
+
   const handleDelete = (id) => {
     // console.log("click", id);
     fetch(`https://recycle-clothes-server.vercel.app/seller/${id}`, {
@@ -58,9 +62,7 @@ const AllSeller = () => {
         }
       });
   };
-  if (navigation.state === "loading") {
-    return <Loading></Loading>;
-  }
+
   return (
     <div>
       <div>

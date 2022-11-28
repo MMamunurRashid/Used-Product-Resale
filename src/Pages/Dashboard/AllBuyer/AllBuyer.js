@@ -25,6 +25,9 @@ const AllBuyer = () => {
       return data;
     },
   });
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
 
   const handleDelete = (id) => {
     // console.log("click", id);
@@ -39,9 +42,7 @@ const AllBuyer = () => {
         }
       });
   };
-  if (navigation.state === "loading") {
-    return <Loading></Loading>;
-  }
+
   return (
     <div>
       <div>

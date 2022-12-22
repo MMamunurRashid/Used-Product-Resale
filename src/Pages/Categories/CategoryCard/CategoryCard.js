@@ -54,12 +54,17 @@ const CategoryCard = ({ product, setProduct }) => {
   }
 
   return (
-    <div className="my-5">
+    <div className="my-5 ">
       {product?.status !== "sold" && (
-        <div className="card  card-compact sm:w-96 bg-base-100 shadow-xl">
+        <div className="card  card-compact sm:w-96 bg-base-100 shadow-xl ">
           <figure>
-            <img className="h-60 w-full" src={productPhoto} alt="Shoes" />
+            <img
+              className="h-60 w-full hover:cursor-pointer  transition ease-in-out delay-100 hover:-translate-y-[784px, 1446px] hover:scale-125  duration-500 hover:opacity-70 hover:bg-[rgba(35,87,132,.5)] transition-transform"
+              src={productPhoto}
+              alt="Shoes"
+            />
           </figure>
+
           <div className="card-body">
             <h2 className="text-2xl font-bold font-serif">{productName}</h2>
             <p className="text-xl font-semibold">Price : {sellingPrice} BDT</p>

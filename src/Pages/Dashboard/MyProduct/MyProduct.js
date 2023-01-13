@@ -53,6 +53,22 @@ const MyProduct = () => {
       });
   };
 
+  const handleDelete = (id) => {
+    console.log("click", id);
+    fetch(`https://recycle-clothes-server.vercel.app/delete-product/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          refetch();
+          toast.success(`Product deleted successfully`);
+        }
+      });
+  };
   return (
     <div className="">
       <h1 className="text-3xl mb-3"> My Products</h1>
@@ -66,6 +82,7 @@ const MyProduct = () => {
             <th>Post Time Date</th>
             <th>Status</th>
             <th>Advertise</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -91,6 +108,14 @@ const MyProduct = () => {
                   <button className="btn btn-xs disabled">Advertised</button>
                 </td>
               )}
+              <td>
+                <button
+                  onClick={() => handleDelete(product._id)}
+                  className="btn btn-xs btn-primary"
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

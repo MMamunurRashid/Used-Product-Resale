@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const BookingModal = ({ product, setProduct }) => {
@@ -75,9 +76,11 @@ const BookingModal = ({ product, setProduct }) => {
           {user?.email ? (
             <></>
           ) : (
-            <p className="text-2xl font-serif text-red-600">
-              Please Log in First
-            </p>
+            <Link to="login">
+              <button className="btn btn-outline text-2xl font-serif text-red-600">
+                Please Log in First
+              </button>
+            </Link>
           )}
           <p>Product Information</p>
           <h3 className="text-lg font-bold">Product Name: {productName}</h3>

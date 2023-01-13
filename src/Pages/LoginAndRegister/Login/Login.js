@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 import toast from "react-hot-toast";
 import useToken from "../../../hooks/useToken";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -40,7 +41,7 @@ const Login = () => {
       });
   };
   return (
-    <div className="h-[800px] flex justify-center ">
+    <div className="h-[800px] flex justify-center items-center ">
       <div className="w-96 p-7">
         <h2 className="text-xl sm:text-5xl text-center">Login</h2>
         <form onSubmit={handleSubmit(handleLogin)}>
@@ -98,6 +99,12 @@ const Login = () => {
             Create new Account
           </Link>
         </p>
+        <div className="divider">OR</div>
+        <Link to="/sign-up">
+          <button className="btn btn-outline w-full">
+            <FcGoogle className="w-8 h-8 mr-3" /> CONTINUE WITH GOOGLE
+          </button>
+        </Link>
       </div>
     </div>
   );

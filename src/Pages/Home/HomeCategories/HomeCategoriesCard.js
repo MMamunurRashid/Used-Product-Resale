@@ -12,7 +12,7 @@ const CategoriesCard = ({ category }) => {
   }
 
   return (
-    <div className="card sm:w-96 bg-base-100 shadow-xl my-5">
+    <div className="card sm:w-96 bg-base-100 shadow-xl my-5 transition ease-in-out  hover:scale-110  duration-500  ">
       <figure>
         <img className="h-80" src={picture} alt="Shoes" />
       </figure>

@@ -4,6 +4,9 @@ import AdvertiseProduct from "../AdvertiseProduct/AdvertiseProduct";
 import Banner from "../Banner/Banner";
 import ContactUs from "../ContactUs/ContactUs";
 import Categories from "../HomeCategories/HomeCategories";
+import HowRecycleClothesWork from "../HowRecycleClothesWork/HowRecycleClothesWork";
+import Offer from "../Offer/Offer";
+import Voucher from "../Offer/Voucher";
 
 const Home = () => {
   useTitle("Home");
@@ -12,6 +15,9 @@ const Home = () => {
       <Banner></Banner>
       <Categories></Categories>
       <AdvertiseProduct></AdvertiseProduct>
+      <HowRecycleClothesWork></HowRecycleClothesWork>
+      <Offer />
+      <Voucher />
       <ContactUs></ContactUs>
     </div>
   );

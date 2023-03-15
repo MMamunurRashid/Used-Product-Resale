@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import img from "../../assets/404-error-page-not-found.jpg";
+import img from "../../assets/not_found.gif";
 import useTitle from "../../hooks/useTitle";
 import Navbar from "../Shared/Navbar/Navbar";
 const NotFound = () => {
